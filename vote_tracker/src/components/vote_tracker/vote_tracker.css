@@ -1,0 +1,35 @@
+main{
+    padding: 10vw;
+    font-size: 2vw;
+    background: darkred;
+    min-height: 30vh;
+    text-align: center;
+}
+
+main h2 {
+    color: white;
+}
+
+main span {
+    display: inline-block;
+    margin: .5vw;
+    padding: 1vw 2vw;
+    background: #ccc;
+    font-size: 2vw;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 350ms all;
+}
+
+main span:hover{
+    background: #ffdd54;
+
+}
+
+h2.positive{
+    color: green;
+}
+
+h2.negative{
+    color: red;
+}
