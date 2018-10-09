@@ -11,21 +11,21 @@ class Vote_tracker extends React.Component{
             polarity: 'neutral',
         }
 
-        this.handleUp = this.handleUp.bind(this);
-        this.handleDown = this.handleDown.bind(this);
-        this.updateState = this.updateState.bind(this);
+        this.up_vote_count = this.up_vote_count.bind(this);
+        this.down_vote_count = this.down_vote_count.bind(this);
+        this.vote_limit = this.vote_limit.bind(this);
 
     }
 
-    handleUp() {
-        this.updateState(this.state.counter + 1);
+    up_vote_count() {
+        this.vote_limit(this.state.counter + 1);
     }
 
-    handleDown() {
-        this.updateState(this.state.counter - 1);
+    down_vote_count() {
+        this.vote_limit(this.state.counter - 1);
     }
 
-    updateState(counter) {
+    vote_limit(counter) {
         let polarity = null;
         if (counter > 0){polarity = "positive"};
         if (counter < 0){polarity = "negative"};
@@ -42,8 +42,8 @@ class Vote_tracker extends React.Component{
         return(
             <main>
                 <h2 className={this.state.polarity}>{this.state.counter}</h2>
-                <span onClick={this.handleDown}>-</span>
-                <span onClick={this.handleUp}>+</span>
+                <span onClick={this.down_vote_count}>-</span>
+                <span onClick={this.up_vote_count}>+</span>
             </main>
         )
     }

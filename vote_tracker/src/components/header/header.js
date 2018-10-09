@@ -7,7 +7,6 @@ class Header extends React.Component{
         return (
             <header>
                 <h1>Vote Tracker App</h1>
-
             </header>
         )
     }
