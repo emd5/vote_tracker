@@ -10,7 +10,7 @@ main h2 {
     color: white;
 }
 
-main span {
+main button {
     display: inline-block;
     margin: .5vw;
     padding: 1vw 2vw;
@@ -21,7 +21,7 @@ main span {
     transition: 350ms all;
 }
 
-main span:hover{
+main button:hover{
     background: #ffdd54;
 
 }

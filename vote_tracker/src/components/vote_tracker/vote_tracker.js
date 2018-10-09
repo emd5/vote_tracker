@@ -8,41 +8,37 @@ class Vote_tracker extends React.Component{
 
         this.state = {
             counter: 0,
+            hidden_vote_limit: 0,
             polarity: 'neutral',
-            hidden_vote_limit: 10,
+            isDisabled: false,
         }
 
         this.handleUp = this.handleUp.bind(this);
         this.handleDown = this.handleDown.bind(this);
-        // this.decreaseVoteLimit = this.decreaseVoteLimit.bind(this);
         this.updateState = this.updateState.bind(this);
     }
 
     handleUp() {
-        this.updateState(this.state.counter + 1);
-        // this.updateState(this.state.hidden_vote_limit - 1);
-        // decreaseVoteLimit()
+        this.updateState(this.state.counter + 1, this.state.hidden_vote_limit);
         }
 
     handleDown() {
-        this.updateState(this.state.counter - 1);
-        // this.updateState(this.state.hidden_vote_limit - 1);
-        // decreaseVoteLimit()
+        this.updateState(this.state.counter - 1, this.state.hidden_vote_limit);
     }
-
-    // decreaseVoteLimit() {
-    //     this.updateState(this.state.hidden_vote_limit - 1);
-    // }
 
     updateState(counter, hidden_vote_limit) {
         let polarity = null;
+        let isDisabled;
+        hidden_vote_limit++;
         if (counter > 0){polarity = "positive"};
         if (counter < 0){polarity = "negative"};
-        // if (hidden_vote_limit = 10) {
-        //     return "No more votes!"
-        // }
+        if (hidden_vote_limit >= 10) {
+            isDisabled = true;
+        } else {
+            isDisabled = false;
+        }
         this.setState(
-            {counter, polarity, hidden_vote_limit}
+            {counter, polarity, hidden_vote_limit, isDisabled}
         )
     }
 
@@ -53,10 +49,9 @@ class Vote_tracker extends React.Component{
     render(){
         return(
             <main>
-                <h2 className={this.state.polarity}>{this.state.counter}</h2>
-                <span onClick={this.handleDown}>-</span>
-                <span onClick={this.handleUp}>+</span>
-                {/* <h2>{this.state.hidden_vote_limit}</h2> */}
+                {this.state.hidden_vote_limit >= 10 ? <h2>No more votes!</h2> : <h2 className={this.state.polarity}>{this.state.counter}</h2>}
+                <button onClick={this.handleDown} disabled={this.state.isDisabled}>-</button>
+                <button onClick={this.handleUp} disabled={this.state.isDisabled}>+</button>
             </main>
         )
     }

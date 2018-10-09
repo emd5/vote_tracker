@@ -35,3 +35,6 @@ Elizabeth Mahoney & Stephen Harper
     - down votes
     - vote limit
 7. should contain a related CSS file, with minor styling that is specific to this component
+
+Acknowledgements
+Judy Vue
