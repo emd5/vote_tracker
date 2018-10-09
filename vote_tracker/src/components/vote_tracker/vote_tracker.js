@@ -7,31 +7,30 @@ class Vote_tracker extends React.Component{
         super(props);
 
         this.state = {
+            vote_limit: 10,
             counter: 0,
-            polarity: 'neutral',
         }
 
         this.up_vote_count = this.up_vote_count.bind(this);
         this.down_vote_count = this.down_vote_count.bind(this);
-        this.vote_limit = this.vote_limit.bind(this);
+        this.updateState = this.updateState.bind(this);
 
     }
 
     up_vote_count() {
-        this.vote_limit(this.state.counter + 1);
+        this.updateState(this.state.counter + 1);
     }
 
     down_vote_count() {
-        this.vote_limit(this.state.counter - 1);
+        this.updateState(this.state.counter - 1);
     }
 
-    vote_limit(counter) {
-        let polarity = null;
-        if (counter > 0){polarity = "positive"};
-        if (counter < 0){polarity = "negative"};
-        this.setState(
-            {counter, polarity}
-        )
+    updateState(counter ) {
+        if (this.state.vote_limit < 1) { return alert('No more votes!.') }
+        else{
+            let vote_limit = this.state.vote_limit - 1;
+            this.setState({counter, vote_limit})
+        }
     }
 
     componentDidUpdate(){
@@ -41,7 +40,8 @@ class Vote_tracker extends React.Component{
     render(){
         return(
             <main>
-                <h2 className={this.state.polarity}>{this.state.counter}</h2>
+                <h2>Total Votes: {this.state.counter}</h2>
+                <h2>Remaining Votes: {this.state.vote_limit}</h2>
                 <span onClick={this.down_vote_count}>-</span>
                 <span onClick={this.up_vote_count}>+</span>
             </main>
